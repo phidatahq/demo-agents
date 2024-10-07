@@ -1,6 +1,6 @@
 ## Demo Agents
 
-This repo contains the code for running an AI Api in 2 environments:
+This repo contains the code for running phidata demo-agents in 2 environments:
 
 1. `dev`: A development environment running locally on docker
 2. `prd`: A production environment running on AWS ECS
@@ -9,7 +9,7 @@ This repo contains the code for running an AI Api in 2 environments:
 
 1. Clone the git repo
 
-> from the `ai-api` dir:
+> from the `demo-agents` dir:
 
 2. Create + activate a virtual env:
 
@@ -72,7 +72,7 @@ phi ws down
 
 ## Next Steps:
 
-- [Run the Api App on AWS](https://docs.phidata.com/templates/ai-api/run-aws)
+- [Run the Api App on AWS](https://docs.phidata.com/templates/demo-agents/run-aws)
 - Read how to [manage the development application](https://docs.phidata.com/how-to/development-app)
 - Read how to [manage the production application](https://docs.phidata.com/how-to/production-app)
 - Read how to [add python libraries](https://docs.phidata.com/how-to/python-libraries)
@@ -80,4 +80,4 @@ phi ws down
 - Read how to [manage secrets](https://docs.phidata.com/how-to/secrets)
 - Add [CI/CD](https://docs.phidata.com/how-to/ci-cd)
 - Add [database tables](https://docs.phidata.com/how-to/database-tables)
-- Read the [Api App guide](https://docs.phidata.com/templates/ai-api)
+- Read the [Api App guide](https://docs.phidata.com/templates/demo-agents)
