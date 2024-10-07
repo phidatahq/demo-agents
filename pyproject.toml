@@ -1,0 +1,65 @@
+[project]
+name = "demo-agents"
+version = "0.1.0"
+requires-python = ">3.7"
+readme = "README.md"
+authors = [{ name = "Phidata Team", email = "hello@phidata.com" }]
+
+dependencies = [
+  # Api server Libraries
+  "fastapi",
+  "typer",
+  "uvicorn",
+  # Database Libraries
+  "alembic",
+  "pgvector",
+  "psycopg[binary]",
+  "sqlalchemy",
+  # Project libraries
+  "openai",
+  "pypdf",
+  "exa_py",
+  "yfinance",
+  "duckdb",
+  "tiktoken",
+  "beautifulsoup4",
+  "types-beautifulsoup4",
+  # Type checking
+  "mypy",
+  # Testing
+  "pytest",
+  # Linting and Formatting
+  "ruff",
+  # phidata
+  "phidata[aws]==2.5.0a3",
+  # pin requests to < 2.32 as it breaks docker
+  "requests<2.32.0"
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+
+# Change this value to use a different directory for the phidata workspace.
+# [tool.phidata]
+# workspace = "workspace"
+
+[tool.ruff]
+line-length = 110
+exclude = ["aienv*", ".venv*"]
+[tool.ruff.lint.per-file-ignores]
+# Ignore `F401` (import violations) in all `__init__.py` files
+"__init__.py" = ["F401"]
+
+[tool.mypy]
+check_untyped_defs = true
+no_implicit_optional = true
+warn_unused_configs = true
+plugins = ["pydantic.mypy"]
+exclude = ["aienv*", ".venv*"]
+
+[[tool.mypy.overrides]]
+module = ["pgvector.*", "setuptools.*"]
+ignore_missing_imports = true
