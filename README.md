@@ -1,4 +1,4 @@
-## AI API
+## Demo Agents
 
 This repo contains the code for running an AI Api in 2 environments:
 

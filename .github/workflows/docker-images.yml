@@ -30,4 +30,4 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_REPO }}/ai-api:dev, ${{ secrets.DOCKERHUB_REPO }}/ai-api:prd
+          tags: ${{ secrets.DOCKERHUB_REPO }}/demo-agents:dev, ${{ secrets.DOCKERHUB_REPO }}/demo-agents:prd

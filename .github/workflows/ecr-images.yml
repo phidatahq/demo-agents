@@ -41,4 +41,4 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ env.ECR_REPO }}/ai-api:dev, ${{ env.ECR_REPO }}/ai-api:prd
+          tags: ${{ env.ECR_REPO }}/demo-agents:dev, ${{ env.ECR_REPO }}/demo-agents:prd
