@@ -2,7 +2,6 @@ from typing import Optional
 
 from phi.agent import Agent
 from phi.model.openai import OpenAIChat
-from phi.tools.exa import ExaTools
 from phi.tools.yfinance import YFinanceTools
 
 from agents.settings import agent_settings
@@ -19,7 +18,7 @@ def get_finance_agent(
     debug_mode: bool = False,
 ) -> Agent:
     return Agent(
-        name="Finance Agent",
+        name="Finance Agent",   
         agent_id="finance-agent",
         session_id=session_id,
         user_id=user_id,
