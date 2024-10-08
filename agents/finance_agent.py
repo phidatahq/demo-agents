@@ -18,7 +18,7 @@ def get_finance_agent(
     debug_mode: bool = False,
 ) -> Agent:
     return Agent(
-        name="Finance Agent",   
+        name="Finance Agent",
         agent_id="finance-agent",
         session_id=session_id,
         user_id=user_id,
