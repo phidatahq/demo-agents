@@ -43,7 +43,7 @@ class ApiSettings(BaseSettings):
         valid_cors = cors_origin_list or []
 
         # Add phidata to cors origin list
-        valid_cors.extend(["https://phidata.app", "https://www.phidata.app"])
+        valid_cors.extend(["https://phidata.app", "https://www.phidata.app", "http://localhost:3000"])
 
         runtime_env = info.data.get("runtime_env")
         if runtime_env == "dev":
