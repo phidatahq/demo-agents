@@ -31,9 +31,7 @@ dependencies = [
   # Linting and Formatting
   "ruff",
   # phidata
-  "phidata[aws]==2.5.0a3",
-  # pin requests to < 2.32 as it breaks docker
-  "requests<2.32.0"
+  "phidata[aws]==2.5.0a5"
 ]
 
 [build-system]
