@@ -1,5 +1,3 @@
-from os import getenv
-
 from phi.aws.app.fastapi import FastApi
 from phi.aws.resources import AwsResources
 from phi.aws.resource.ecs import EcsCluster

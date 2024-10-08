@@ -1,5 +1,3 @@
-from os import getenv
-
 from phi.docker.app.fastapi import FastApi
 from phi.docker.app.postgres import PgVectorDb
 from phi.docker.resource.image import DockerImage
