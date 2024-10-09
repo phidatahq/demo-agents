@@ -37,4 +37,5 @@ def get_finance_agent(
         storage=finance_agent_storage,
         # Enable monitoring on phidata.app
         monitoring=True,
+        debug_mode=debug_mode,
     )

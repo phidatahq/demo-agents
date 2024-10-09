@@ -7,7 +7,7 @@ from agents.finance_agent import get_finance_agent
 ## Router for the agent playground
 ######################################################
 
-finance_agent = get_finance_agent()
+finance_agent = get_finance_agent(debug_mode=True)
 
 # Create a playground instance
 playground = Playground(agents=[finance_agent])
