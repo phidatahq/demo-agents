@@ -1,10 +1,8 @@
 FROM phidata/python:3.12
 
 ARG USER=app
-ARG APP_DIR=${USER_LOCAL_DIR}/${USER}
+ARG APP_DIR=/app
 ENV APP_DIR=${APP_DIR}
-# Add APP_DIR to PYTHONPATH
-ENV PYTHONPATH="${APP_DIR}:${PYTHONPATH}"
 
 # Create user and home directory
 RUN groupadd -g 61000 ${USER} \
