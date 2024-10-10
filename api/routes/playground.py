@@ -1,7 +1,7 @@
 from os import getenv
 from phi.playground import Playground
 
-from agents.finance_agent import get_finance_agent
+from agents.finance import get_finance_agent
 
 ######################################################
 ## Router for the agent playground

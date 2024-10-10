@@ -163,6 +163,7 @@ container_env = {
     "RUNTIME_ENV": "prd",
     # Get the OpenAI API key from the local environment
     # "OPENAI_API_KEY": getenv("OPENAI_API_KEY"),
+    "PHI_MONITORING": "True",
     # Database configuration
     "DB_HOST": AwsReference(prd_db.get_db_endpoint),
     "DB_PORT": AwsReference(prd_db.get_db_port),
@@ -181,10 +182,10 @@ prd_fastapi = FastApi(
     enabled=ws_settings.prd_api_enabled,
     group="api",
     image=prd_image,
-    command="uvicorn api.main:app",
+    command="uvicorn api.main:app --workers 4",
     port_number=8000,
-    ecs_task_cpu="1024",
-    ecs_task_memory="2048",
+    ecs_task_cpu="2048",
+    ecs_task_memory="4096",
     ecs_service_count=2,
     ecs_cluster=prd_ecs_cluster,
     aws_secrets=[prd_secret],

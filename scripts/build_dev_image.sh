@@ -5,8 +5,8 @@ set -e
 CURR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WS_ROOT="$(dirname ${CURR_DIR})"
 DOCKERFILE="Dockerfile"
-REPO="repo"
-NAME="ai-api"
+REPO="phidata"
+NAME="demo-agents"
 TAG="dev"
 
 # Run docker buildx create --use before running this script

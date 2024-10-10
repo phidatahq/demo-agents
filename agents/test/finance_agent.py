@@ -1,4 +1,4 @@
-from agents.finance_agent import get_finance_agent
+from agents.finance import get_finance_agent
 
 finance_agent = get_finance_agent()
 

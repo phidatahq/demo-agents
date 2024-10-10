@@ -1,9 +1,7 @@
 #!/bin/bash
 
 ############################################################################
-#
-# Entrypoint script
-#
+# Container Entrypoint script
 ############################################################################
 
 if [[ "$PRINT_ENV_ON_LOAD" = true || "$PRINT_ENV_ON_LOAD" = True ]]; then

@@ -1,31 +1,28 @@
 #!/bin/bash
 
 ############################################################################
-#
-# Install python dependencies. Run this inside a virtual env.
-# Usage:
-# 1. Create + activate virtual env using:
-#     python3 -m venv aienv
-#     source aienv/bin/activate
-# 2. Install workspace and dependencies:
-#     ./scripts/install.sh
+# Create a venv and install workspace dependencies.
+# Usage: ./scripts/install.sh
 ############################################################################
 
 CURR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname $CURR_DIR)"
+VENV_DIR="${REPO_ROOT}/.venv"
 source ${CURR_DIR}/_utils.sh
 
-main() {
-  print_heading "Installing workspace: ${REPO_ROOT}"
+print_heading "Installing workspace..."
 
-  pip install --upgrade wheel
+print_heading "Creating virtual env"
+print_status "VIRTUAL_ENV=${VENV_DIR} uv venv"
+VIRTUAL_ENV=${VENV_DIR} uv venv
 
-  print_heading "Installing requirements.txt"
-  pip install --no-deps \
-    -r ${REPO_ROOT}/requirements.txt --no-cache
+print_heading "Installing requirements"
+print_status "VIRTUAL_ENV=${VENV_DIR} uv pip sync ${REPO_ROOT}/requirements.txt"
+VIRTUAL_ENV=${VENV_DIR} uv pip sync ${REPO_ROOT}/requirements.txt
 
-  print_heading "Installing workspace ${REPO_ROOT}"
-  pip install --editable "${REPO_ROOT}"
-}
+print_heading "Installing workspace in editable mode"
+VIRTUAL_ENV=${VENV_DIR} uv pip install -e ${REPO_ROOT}
 
-main "$@"
+print_heading "Workspace installed"
+print_heading "Activate venv using: source .venv/bin/activate"
+

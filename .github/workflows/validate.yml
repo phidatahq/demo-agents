@@ -26,9 +26,7 @@ jobs:
           cache: "pip"
       - name: Install dependencies
         run: |
-          python -m pip install -U \
-            pip setuptools wheel \
-            mypy ruff
+          python -m pip install -U uv \
           pip install --no-deps -r requirements.txt
       - name: Format with ruff
         run: |
@@ -39,3 +37,6 @@ jobs:
       - name: Type-check with mypy
         run: |
           mypy .
+      # - name: Test with pytest
+      #   run: |
+      #     pytest .

@@ -1,4 +1,4 @@
-FROM phidata/python:3.11.5
+FROM phidata/python:3.12
 
 ARG USER=app
 ARG APP_DIR=${USER_LOCAL_DIR}/${USER}
@@ -12,16 +12,15 @@ RUN groupadd -g 61000 ${USER} \
 
 WORKDIR ${APP_DIR}
 
-# Update pip
-RUN pip install --upgrade pip
-# Copy pinned requirements
-COPY requirements.txt .
-# Install pinned requirements
-RUN pip install -r requirements.txt
+# Copy requirements and install
+COPY requirements.txt pyproject.toml ./
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv pip sync requirements.txt --system
 
 # Copy project files
 COPY . .
 
 COPY scripts /scripts
+USER ${USER}
 ENTRYPOINT ["/scripts/entrypoint.sh"]
 CMD ["chill"]

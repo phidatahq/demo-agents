@@ -1,37 +1,29 @@
 [project]
 name = "demo-agents"
 version = "0.1.0"
-requires-python = ">3.7"
+requires-python = ">=3.9"
 readme = "README.md"
 authors = [{ name = "Phidata Team", email = "hello@phidata.com" }]
 
 dependencies = [
-  # Api server Libraries
-  "fastapi",
-  "typer",
-  "uvicorn",
-  # Database Libraries
   "alembic",
-  "pgvector",
-  "psycopg[binary]",
-  "sqlalchemy",
-  # Project libraries
-  "openai",
-  "pypdf",
-  "exa_py",
-  "yfinance",
-  "duckdb",
-  "tiktoken",
   "beautifulsoup4",
-  "types-beautifulsoup4",
-  # Type checking
+  "duckdb",
+  "exa_py",
+  "fastapi[standard]",
   "mypy",
-  # Testing
+  "openai",
+  "pgvector",
+  "phidata[aws]==2.5.0a11",
+  "psycopg[binary]",
+  "pypdf",
   "pytest",
-  # Linting and Formatting
   "ruff",
-  # phidata
-  "phidata[aws]==2.5.0a9"
+  "sqlalchemy",
+  "tiktoken",
+  "typer",
+  "types-beautifulsoup4",
+  "yfinance",
 ]
 
 [build-system]
@@ -61,3 +53,9 @@ exclude = ["aienv*", ".venv*"]
 [[tool.mypy.overrides]]
 module = ["pgvector.*", "setuptools.*"]
 ignore_missing_imports = true
+
+[tool.uv.pip]
+no-annotate = true
+
+[tool.pytest.ini_options]
+log_cli = true

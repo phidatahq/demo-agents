@@ -6,7 +6,7 @@ CURR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WS_ROOT="$(dirname ${CURR_DIR})"
 DOCKERFILE="Dockerfile"
 REPO="repo"
-NAME="ai-api"
+NAME="demo-agents"
 TAG="prd"
 
 # Run docker buildx create --use before running this script
