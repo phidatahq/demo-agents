@@ -33,7 +33,7 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Install the project
-        run: uv pip sync
+        run: uv pip sync requirements.txt
 
       - name: Format with ruff
         run: uv run ruff format .
