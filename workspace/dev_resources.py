@@ -48,7 +48,7 @@ container_env = {
 
 # -*- FastApi running on port 8000:8000
 dev_fastapi = FastApi(
-    name=ws_settings.ws_name,
+    name=f"{ws_settings.ws_name}-api",
     enabled=ws_settings.dev_api_enabled,
     image=dev_image,
     command="uvicorn api.main:app --reload",
@@ -57,9 +57,12 @@ dev_fastapi = FastApi(
     mount_workspace=True,
     env_vars=container_env,
     use_cache=ws_settings.use_cache,
+    container_volumes={
+        "/Users/zu/lab/phidata": {"bind": "/usr/local/phidata", "mode": "rw"},
+    },
     # Read secrets from secrets/dev_api_secrets.yml
     secrets_file=ws_settings.ws_root.joinpath("workspace/secrets/dev_api_secrets.yml"),
-    depends_on=[dev_db],
+    # depends_on=[dev_db],
 )
 
 # -*- Dev DockerResources
