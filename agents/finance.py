@@ -27,7 +27,7 @@ def get_finance_agent(
             max_tokens=agent_settings.default_max_completion_tokens,
             temperature=agent_settings.default_temperature,
         ),
-        tools=[YFinanceTools(enable_all_tools=True)],
+        tools=[YFinanceTools(enable_all=True)],
         description="You are a finance agent",
         instructions=["Use tables where possible"],
         markdown=True,
