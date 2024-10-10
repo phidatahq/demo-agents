@@ -44,7 +44,7 @@ packaging==24.1
 pandas==2.2.3
 peewee==3.17.6
 pgvector==0.3.5
-phidata[aws]==2.5.0a7
+phidata[aws]==2.5.0a9
 platformdirs==4.3.6
 pluggy==1.5.0
 psycopg[binary]==3.1.18
