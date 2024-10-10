@@ -1,9 +1,8 @@
 name: Build Docker Images
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 
 permissions:
   contents: read
