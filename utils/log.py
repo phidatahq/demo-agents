@@ -7,14 +7,12 @@ def build_logger(
     log_level: int = logging.INFO,
     show_time: bool = False,
     rich_tracebacks: bool = False,
-    tracebacks_show_locals: bool = False
+    tracebacks_show_locals: bool = False,
 ) -> logging.Logger:
     from rich.logging import RichHandler
 
     rich_handler = RichHandler(
-        show_time=show_time,
-        rich_tracebacks=rich_tracebacks,
-        tracebacks_show_locals=tracebacks_show_locals
+        show_time=show_time, rich_tracebacks=rich_tracebacks, tracebacks_show_locals=tracebacks_show_locals
     )
     rich_handler.setFormatter(
         logging.Formatter(
@@ -32,6 +30,7 @@ def build_logger(
 
 # Default logger instance
 logger: logging.Logger = build_logger("demo-agents")
+
 
 # Function to get or create a logger
 def get_logger(name: Optional[str] = None) -> logging.Logger:

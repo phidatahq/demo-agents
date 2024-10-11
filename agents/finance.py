@@ -9,7 +9,7 @@ from phi.storage.agent.postgres import PgAgentStorage
 
 from db.session import db_url
 
-finance_agent_storage = PgAgentStorage(table_name="finance_agent_sessions", db_url=db_url)
+finance_agent_storage = PgAgentStorage(table_name="finance_agent", db_url=db_url)
 
 
 def get_finance_agent(

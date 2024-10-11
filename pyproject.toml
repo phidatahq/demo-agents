@@ -14,7 +14,7 @@ dependencies = [
   "mypy",
   "openai",
   "pgvector",
-  "phidata[aws]==2.5.0a12",
+  "phidata[aws]==2.5.0a13",
   "psycopg[binary]",
   "pypdf",
   "pytest",
