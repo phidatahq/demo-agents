@@ -13,7 +13,7 @@ from workspace.settings import ws_settings
 dev_image = DockerImage(
     name=f"{ws_settings.image_repo}/{ws_settings.image_name}",
     tag=ws_settings.dev_env,
-    enabled=ws_settings.build_images,
+    enabled=True,
     path=str(ws_settings.ws_root),
     push_image=False,
 )
