@@ -27,7 +27,7 @@ if [[ "$WAIT_FOR_REDIS" = true || "$WAIT_FOR_REDIS" = True ]]; then
 fi
 
 ############################################################################
-# Install dependencies
+# Install requirements
 ############################################################################
 
 if [[ "$INSTALL_REQUIREMENTS" = true || "$INSTALL_REQUIREMENTS" = True ]]; then

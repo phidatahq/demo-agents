@@ -10,15 +10,21 @@ RUN groupadd -g 61000 ${USER} \
 
 WORKDIR ${APP_DIR}
 
-# Copy requirements and install
-COPY requirements.txt pyproject.toml ./
+# Copy requirements.txt
+COPY requirements.txt ./
+
+# Install requirements
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv pip sync requirements.txt --system
 
 # Copy project files
 COPY . .
 
-COPY scripts /scripts
+# Set permissions for the /app directory
+RUN chown -R ${USER}:${USER} ${APP_DIR}
+
+# Switch to non-root user
 USER ${USER}
-ENTRYPOINT ["/scripts/entrypoint.sh"]
+
+ENTRYPOINT ["/app/scripts/entrypoint.sh"]
 CMD ["chill"]

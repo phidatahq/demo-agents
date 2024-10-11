@@ -1,10 +1,21 @@
 import logging
+from typing import Optional
 
 
-def build_logger(logger_name: str) -> logging.Logger:
+def build_logger(
+    logger_name: str,
+    log_level: int = logging.INFO,
+    show_time: bool = False,
+    rich_tracebacks: bool = False,
+    tracebacks_show_locals: bool = False
+) -> logging.Logger:
     from rich.logging import RichHandler
 
-    rich_handler = RichHandler(show_time=False, rich_tracebacks=False, tracebacks_show_locals=False)
+    rich_handler = RichHandler(
+        show_time=show_time,
+        rich_tracebacks=rich_tracebacks,
+        tracebacks_show_locals=tracebacks_show_locals
+    )
     rich_handler.setFormatter(
         logging.Formatter(
             fmt="%(message)s",
@@ -14,9 +25,14 @@ def build_logger(logger_name: str) -> logging.Logger:
 
     _logger = logging.getLogger(logger_name)
     _logger.addHandler(rich_handler)
-    _logger.setLevel(logging.INFO)
+    _logger.setLevel(log_level)
     _logger.propagate = False
     return _logger
 
 
-logger: logging.Logger = build_logger("ai-api")
+# Default logger instance
+logger: logging.Logger = build_logger("demo-agents")
+
+# Function to get or create a logger
+def get_logger(name: Optional[str] = None) -> logging.Logger:
+    return logger if name is None else build_logger(name)

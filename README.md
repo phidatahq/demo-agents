@@ -2,8 +2,8 @@
 
 This repo contains the code for running phidata demo-agents in 2 environments:
 
-1. `dev`: A development environment running locally on docker
-2. `prd`: A production environment running on AWS ECS
+1. **dev**: A development environment running locally on docker
+2. **prd**: A production environment running on AWS ECS
 
 ## Setup Workspace
 
@@ -11,38 +11,32 @@ This repo contains the code for running phidata demo-agents in 2 environments:
 
 > from the `demo-agents` dir:
 
-2. Create + activate a virtual env:
+2. Install workspace and activate the virtual env:
 
 ```sh
-python3 -m venv aienv
-source aienv/bin/activate
+./scripts/install.sh
+source .venv/bin/activate
 ```
 
-3. Install `phidata`:
-
-```sh
-pip install phidata
-```
-
-4. Setup workspace:
+3. Setup workspace:
 
 ```sh
 phi ws setup
 ```
 
-5. Copy `workspace/example_secrets` to `workspace/secrets`:
+4. Copy `workspace/example_secrets` to `workspace/secrets`:
 
 ```sh
 cp -r workspace/example_secrets workspace/secrets
 ```
 
-6. Optional: Create `.env` file:
+5. Optional: Create `.env` file:
 
 ```sh
 cp example.env .env
 ```
 
-## Run Api locally
+## Run Demo Agents locally
 
 1. Install [docker desktop](https://www.docker.com/products/docker-desktop)
 
@@ -62,7 +56,7 @@ export OPENAI_API_KEY=sk-***
 phi ws up
 ```
 
-Open [localhost:8000/docs](http://localhost:8000/docs) to view the FastApi docs.
+Open [localhost:8000/docs](http://localhost:8000/docs) to view the demo agents api.
 
 4. Stop the workspace using:
 

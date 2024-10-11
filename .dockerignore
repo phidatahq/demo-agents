@@ -2,9 +2,6 @@
 
 docs
 .git
-config.json
-Pipfile
-Pipfile.lock
 
 # Cache
 .mypy_cache
@@ -26,8 +23,5 @@ Pipfile.lock
 .venv
 venv*
 aienv*
-apienv*
-appenv*
-llmenv*
 
 .ipynb_checkpoints

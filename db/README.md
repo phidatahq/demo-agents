@@ -1,41 +1,77 @@
-## Running database migrations
+## Managing database migrations
 
-Steps to migrate the database using alembic:
+This guide outlines the steps to manage database migrations for your workspace.
 
-1. Add/update SqlAlchemy tables in the `db/tables` directory.
-2. Import the SqlAlchemy class in the `db/tables/__init__.py` file.
-3. Create a database revision using: `alembic -c db/alembic.ini revision --autogenerate -m "Revision Name"`
-4. Migrate database using: `alembic -c db/alembic.ini upgrade head`
+## Table of Contents
 
-> Note: Set Env Var `MIGRATE_DB = True` to run the database migration in the entrypoint script at container startup.
+- [Prerequisites](#prerequisites)
+- [Running Migrations](#running-migrations)
+  - [Create a Database Revision](#create-a-database-revision)
+  - [Migrate the Database](#migrate-the-database)
+- [Environment-specific Instructions](#environment-specific-instructions)
+  - [Development Environment](#development-environment)
+  - [Production Environment](#production-environment)
+- [Creating the Migrations Directory](#creating-the-migrations-directory)
+- [Additional Resources](#additional-resources)
 
-Checkout the docs on [adding database tables](https://docs.phidata.com/day-2/database-tables).
+---
 
-## Creat a database revision using alembic
+## Prerequisites
 
-Run the alembic command to create a database migration in the dev container:
+1. **Update Tables**: To run a migration, first we need to add or update SQLAlchemy tables in the `db/tables` directory.
+2. **Import Classes**: Ensure that the SQLAlchemy table classes are imported in `db/tables/__init__.py`.
+
+## Running Migrations
+
+### Create a Database Revision
+
+After you have added or updated your table, create a new database revision using:
 
 ```bash
-docker exec -it ai-api-dev alembic -c db/alembic.ini revision --autogenerate -m "Initialize DB"
+alembic -c db/alembic.ini revision --autogenerate -m "Your Revision Message"
 ```
 
-## Migrate development database
+> **Note:** Replace `"Your Revision Message"` with a meaningful description of the changes.
 
-Run the alembic command to migrate the dev database:
+### Migrate the Database by applying the revision
+
+Run the migration to update the database schema:
 
 ```bash
-docker exec -it ai-api-dev alembic -c db/alembic.ini upgrade head
+alembic -c db/alembic.ini upgrade head
 ```
 
-## Migrate production database
+## Environment-specific Instructions
 
-1. Recommended: Set Env Var `MIGRATE_DB = True` which runs `alembic -c db/alembic.ini upgrade head` from the entrypoint script at container startup.
-2. **OR** you can SSH into the production container to run the migration manually
+Let's explore the migration process for both development and production environments.
+
+### Development Environment
+
+**Create Revision and Migrate:**
 
 ```bash
-ECS_CLUSTER=ai-api-prd-cluster
-TASK_ARN=$(aws ecs list-tasks --cluster ai-api-prd-cluster --query "taskArns[0]" --output text)
-CONTAINER_NAME=ai-api-prd
+docker exec -it demo-agents-api alembic -c db/alembic.ini revision --autogenerate -m "Your Revision Message"
+docker exec -it demo-agents-api alembic -c db/alembic.ini upgrade head
+```
+
+### Production Environment
+
+#### Option 1: Automatic Migration at Startup
+
+Set the environment variable `MIGRATE_DB=True` to run migrations automatically when the container starts. This executes:
+
+```bash
+alembic -c db/alembic.ini upgrade head
+```
+
+#### Option 2: Manual Migration via SSH
+
+SSH into the production container and run the migration manually:
+
+```bash
+ECS_CLUSTER=demo-agents-cluster
+TASK_ARN=$(aws ecs list-tasks --cluster $ECS_CLUSTER --query "taskArns[0]" --output text)
+CONTAINER_NAME=demo-agents-api
 
 aws ecs execute-command --cluster $ECS_CLUSTER \
     --task $TASK_ARN \
@@ -44,21 +80,35 @@ aws ecs execute-command --cluster $ECS_CLUSTER \
     --command "alembic -c db/alembic.ini upgrade head"
 ```
 
+## Creating the Migrations Directory
+
+> **Note:** These steps have already been completed and are included here for reference.
+
+1. **Access the Development Container:**
+
+    ```bash
+    docker exec -it demo-agents-api zsh
+    ```
+
+2. **Initialize Alembic Migrations:**
+
+    ```bash
+    cd db
+    alembic init migrations
+    ```
+
+3. **Post-Initialization Steps:**
+
+    - **Update `alembic.ini`:**
+        - Set `script_location = db/migrations`.
+    - **Update `migrations/env.py`:**
+        - Modify according to the [Alembic Autogenerate Documentation](https://alembic.sqlalchemy.org/en/latest/autogenerate.html).
+
+## Additional Resources
+
+- **Adding Database Tables:** Refer to the [Phidata documentation](https://docs.phidata.com/day-2/database-tables) for detailed instructions on adding database tables.
+- **Environment Variable Note:** Setting `MIGRATE_DB=True` ensures that the migration command runs from the entrypoint script when the container starts.
+
 ---
 
-## How to create the migrations directory
-
-> This has already been run and is described here for completeness
-
-```bash
-docker exec -it ai-api-dev zsh
-
-cd db
-alembic init migrations
-```
-
-- After running the above commands, the `db/migrations` directory should be created.
-- Update `alembic.ini`
-  - set `script_location = db/migrations`
-  - uncomment `black` hook in `[post_write_hooks]`
-- Update `migrations/env.py` file following [this link](https://alembic.sqlalchemy.org/en/latest/autogenerate.html)
+Feel free to customize this README further to suit your project's needs.
