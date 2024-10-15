@@ -43,12 +43,19 @@ class ApiSettings(BaseSettings):
         valid_cors = cors_origin_list or []
 
         # Add phidata to cors origin list
-        valid_cors.extend(["https://phidata.app", "https://www.phidata.app", "http://localhost:3000"])
+        valid_cors.extend(
+            [
+                "https://phidata.app",
+                "https://www.phidata.app",
+                "http://localhost:3000",
+                "https://www.stgphi.com",
+            ]
+        )
 
         runtime_env = info.data.get("runtime_env")
         if runtime_env == "dev":
             # 3000 is the default port for create-react-app
-            valid_cors.extend(["http://localhost", "http://localhost:3000"])
+            valid_cors.extend(["http://localhost", "http://localhost:3000", "https://www.stgphi.com"])
 
         return valid_cors
 
