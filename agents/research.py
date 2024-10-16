@@ -62,6 +62,7 @@ def get_research_agent(
         """),
         markdown=True,
         add_history_to_messages=True,
+        num_history_responses=5,
         add_datetime_to_instructions=True,
         storage=research_agent_storage,
         # Enable monitoring on phidata.app

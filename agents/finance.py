@@ -31,8 +31,8 @@ def get_finance_agent(
         description="You are a finance agent",
         instructions=["Use tables where possible"],
         markdown=True,
-        show_tool_calls=True,
         add_history_to_messages=True,
+        num_history_responses=5,
         add_datetime_to_instructions=True,
         storage=finance_agent_storage,
         # Enable monitoring on phidata.app

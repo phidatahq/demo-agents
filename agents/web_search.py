@@ -34,22 +34,21 @@ def get_web_search_agent(
         instructions=[
             "If you can directly answer the user's question, do so.",
             "Otherwise, search the web for information.",
-            "Important: \n"
-            " - Focus on legitimate sources",
+            "Important: \n" " - Focus on legitimate sources",
             " - Always provide sources and the links to the information you used to answer the question",
             " - If you cannot find the answer, say so and ask the user to provide more details.",
         ],
         expected_output=dedent("""\
         Your answer should be in the following format:
 
-        ## Answer
         {provide a detailed answer to the user's question}
 
-        ## Sources
+        ### Sources
         {provide the sources and links to the information you used to answer the question}
         """),
         markdown=True,
         add_history_to_messages=True,
+        num_history_responses=5,
         add_datetime_to_instructions=True,
         storage=web_search_agent_storage,
         # Enable monitoring on phidata.app
