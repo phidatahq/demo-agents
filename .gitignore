@@ -40,3 +40,6 @@ llmenv*
 # ignore jupyter checkpoints
 .ipynb_checkpoints
 .Trash*
+
+# ignore uv.lock
+uv.lock

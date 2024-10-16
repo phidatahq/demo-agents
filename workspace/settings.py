@@ -34,4 +34,6 @@ ws_settings = WorkspaceSettings(
     image_name="demo-agents",
     # Repository for the image
     image_repo="phidata",
+    # Build images locally
+    build_images=False,
 )
