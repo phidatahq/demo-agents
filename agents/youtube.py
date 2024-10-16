@@ -9,7 +9,7 @@ from phi.storage.agent.postgres import PgAgentStorage
 
 from db.session import db_url
 
-finance_agent_storage = PgAgentStorage(table_name="finance_agent", db_url=db_url)
+youtube_agent_storage = PgAgentStorage(table_name="finance_agent", db_url=db_url)
 
 
 def get_youtube_agent(
@@ -34,7 +34,7 @@ def get_youtube_agent(
         num_history_responses=5,
         show_tool_calls=True,
         add_datetime_to_instructions=True,
-        storage=finance_agent_storage,
+        storage=youtube_agent_storage,
         # Enable monitoring on phidata.app
         monitoring=True,
         debug_mode=debug_mode,
