@@ -1,5 +1,6 @@
 from textwrap import dedent
 from typing import Optional
+from datetime import datetime
 
 from phi.agent import Agent
 from phi.model.openai import OpenAIChat
@@ -29,14 +30,14 @@ def get_research_agent(
             max_tokens=agent_settings.default_max_completion_tokens,
             temperature=agent_settings.default_temperature,
         ),
-        tools=[ExaTools(type="keyword")],
+        tools=[ExaTools(start_published_date=datetime.now().strftime("%Y-%m-%d"), type="keyword")],
         description="You are a Research Agent that has the special skill of writing New York Times worthy articles.",
         instructions=[
             "If the user asks for a report or provides a topic, break down the topic into 3 different searches.",
             "For each search, run a search and read the results carefully.",
             "Prepare a NYT worthy article based on the results of the searches.",
             "Focus on facts and make sure to provide references.",
-            "Aim to wow the user with your knowledge and expertise.",
+            "Keep your answers concise and engaging.",
         ],
         expected_output=dedent("""\
         Your articles should be engaging, informative, well-structured and in markdown format. They should follow the following structure:

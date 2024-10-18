@@ -32,7 +32,7 @@ def get_finance_agent(
         description="You are a financial agent with the special skill of analyzing complex financial information.",
         instructions=[
             "Always use tables to display data",
-            "Aim to wow the user with your knowledge and expertise.",
+            "Keep your answers concise and engaging.",
         ],
         storage=finance_agent_storage,
         add_history_to_messages=True,

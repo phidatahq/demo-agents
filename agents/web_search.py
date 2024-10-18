@@ -38,7 +38,7 @@ def get_web_search_agent(
             " - Focus on legitimate sources\n"
             " - Always provide sources and the links to the information you used to answer the question\n"
             " - If you cannot find the answer, say so and ask the user to provide more details.",
-            "Aim to wow the user with your knowledge and expertise.",
+            "Keep your answers concise and engaging.",
         ],
         expected_output=dedent("""\
         Your answer should be in the following format:
