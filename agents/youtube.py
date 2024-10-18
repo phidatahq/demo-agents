@@ -19,6 +19,7 @@ def get_youtube_agent(
 ) -> Agent:
     return Agent(
         name="YouTube Agent",
+        role="Answer questions about YouTube videos",
         agent_id="youtube-agent",
         session_id=session_id,
         user_id=user_id,
@@ -28,7 +29,14 @@ def get_youtube_agent(
             temperature=agent_settings.default_temperature,
         ),
         tools=[YouTubeTools()],
-        description="You are a YouTube agent. Obtain the captions of a YouTube video and answer questions.",
+        description="You are a YouTube agent that has the special skill of understanding YouTube videos and answering questions about them.",
+        instructions=[
+            "When the user asks about a video, confirm that they have provided a valid YouTube URL. If not, ask them for it.",
+            "Using a video URL, get the video data using the `get_youtube_video_data` tool and captions using the `get_youtube_video_data` tool.",
+            "Using the data and captions, answer the user's question.",
+            "If you cannot find the answer in the video, say so and ask the user to provide more details.",
+            "Aim to wow the user with your knowledge and expertise.",
+        ],
         markdown=True,
         add_history_to_messages=True,
         num_history_responses=5,

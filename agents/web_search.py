@@ -20,8 +20,8 @@ def get_web_search_agent(
 ) -> Agent:
     return Agent(
         name="Web Search Agent",
-        agent_id="web-search-agent",
         role="Search the web for information",
+        agent_id="web-search-agent",
         session_id=session_id,
         user_id=user_id,
         model=OpenAIChat(
@@ -30,13 +30,15 @@ def get_web_search_agent(
             temperature=agent_settings.default_temperature,
         ),
         tools=[SerpApiTools()],
-        description="You are a Web Search Agent that has the special skill of searching the web for information.",
+        description="You are a Web Search Agent that has the special skill of searching the web for information and presenting the results in a structured manner.",
         instructions=[
-            "If you can directly answer the user's question, do so.",
-            "Otherwise, search the web for information.",
-            "Important: \n" " - Focus on legitimate sources",
-            " - Always provide sources and the links to the information you used to answer the question",
+            "To answer the user's question, first search the web for information by breaking down the user's question into smaller queries.",
+            "Make sure you cover all the aspects of the question.",
+            "Important: \n"
+            " - Focus on legitimate sources\n"
+            " - Always provide sources and the links to the information you used to answer the question\n"
             " - If you cannot find the answer, say so and ask the user to provide more details.",
+            "Aim to wow the user with your knowledge and expertise.",
         ],
         expected_output=dedent("""\
         Your answer should be in the following format:
@@ -46,12 +48,10 @@ def get_web_search_agent(
         ### Sources
         {provide the sources and links to the information you used to answer the question}
         """),
-        markdown=True,
+        storage=web_search_agent_storage,
         add_history_to_messages=True,
         num_history_responses=5,
         add_datetime_to_instructions=True,
-        storage=web_search_agent_storage,
-        # Enable monitoring on phidata.app
-        monitoring=True,
+        markdown=True,
         debug_mode=debug_mode,
     )

@@ -19,6 +19,7 @@ def get_finance_agent(
 ) -> Agent:
     return Agent(
         name="Finance Agent",
+        role="Analyze financial data",
         agent_id="finance-agent",
         session_id=session_id,
         user_id=user_id,
@@ -28,14 +29,15 @@ def get_finance_agent(
             temperature=agent_settings.default_temperature,
         ),
         tools=[YFinanceTools(enable_all=True)],
-        description="You are a finance agent",
-        instructions=["Use tables where possible"],
-        markdown=True,
+        description="You are a financial agent with the special skill of analyzing complex financial information.",
+        instructions=[
+            "Always use tables to display data",
+            "Aim to wow the user with your knowledge and expertise.",
+        ],
+        storage=finance_agent_storage,
         add_history_to_messages=True,
         num_history_responses=5,
         add_datetime_to_instructions=True,
-        storage=finance_agent_storage,
-        # Enable monitoring on phidata.app
-        monitoring=True,
+        markdown=True,
         debug_mode=debug_mode,
     )

@@ -20,6 +20,7 @@ def get_research_agent(
 ) -> Agent:
     return Agent(
         name="Research Agent",
+        role="Write research reports for the New York Times",
         agent_id="research-agent",
         session_id=session_id,
         user_id=user_id,
@@ -29,14 +30,13 @@ def get_research_agent(
             temperature=agent_settings.default_temperature,
         ),
         tools=[ExaTools(type="keyword")],
-        description=dedent("""\
-        You are a Research Agent that has the special skill of writing New York Times worthy articles.
-        If you can directly respond to the user, do so. If the user asks for a report or provides a topic, follow the instructions below.
-        """),
+        description="You are a Research Agent that has the special skill of writing New York Times worthy articles.",
         instructions=[
-            "For the provided topic, run 3 different searches.",
-            "Read the results carefully and prepare a NYT worthy article.",
+            "If the user asks for a report or provides a topic, break down the topic into 3 different searches.",
+            "For each search, run a search and read the results carefully.",
+            "Prepare a NYT worthy article based on the results of the searches.",
             "Focus on facts and make sure to provide references.",
+            "Aim to wow the user with your knowledge and expertise.",
         ],
         expected_output=dedent("""\
         Your articles should be engaging, informative, well-structured and in markdown format. They should follow the following structure:

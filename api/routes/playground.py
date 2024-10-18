@@ -16,7 +16,7 @@ web_search_agent = get_web_search_agent(debug_mode=True)
 youtube_agent = get_youtube_agent(debug_mode=True)
 
 # Create a playground instance
-playground = Playground(agents=[finance_agent, research_agent, web_search_agent, youtube_agent])
+playground = Playground(agents=[research_agent, web_search_agent, finance_agent, youtube_agent])
 # Log the playground endpoint with phidata.app
 if getenv("RUNTIME_ENV") == "dev":
     playground.create_endpoint("http://localhost:8000")
