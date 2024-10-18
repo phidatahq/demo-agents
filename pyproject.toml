@@ -30,6 +30,7 @@ dependencies = [
   "types-beautifulsoup4",
   "types-Pillow",
   "yfinance",
+  "youtube_transcript_api"
 ]
 
 [build-system]
