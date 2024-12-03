@@ -1,20 +1,9 @@
 from typing import Iterator
-from pathlib import Path
-from shutil import rmtree
 
 from phi.agent import Agent, RunResponse
 from phi.workflow import Workflow
 from phi.tools.yfinance import YFinanceTools
 from phi.utils.log import logger
-
-
-reports_dir = Path(__file__).parent.joinpath("reports", "investment")
-if reports_dir.is_dir():
-    rmtree(path=reports_dir, ignore_errors=True)
-reports_dir.mkdir(parents=True, exist_ok=True)
-stock_analyst_report = str(reports_dir.joinpath("stock_analyst_report.md"))
-research_analyst_report = str(reports_dir.joinpath("research_analyst_report.md"))
-investment_report = str(reports_dir.joinpath("investment_report.md"))
 
 
 class InvestmentAnalyst(Workflow):
@@ -32,7 +21,6 @@ class InvestmentAnalyst(Workflow):
             "Note: This is only for educational purposes.",
         ],
         expected_output="Report in markdown format",
-        save_response_to_file=stock_analyst_report,
     )
 
     research_analyst: Agent = Agent(
@@ -46,7 +34,6 @@ class InvestmentAnalyst(Workflow):
             "Prepare a markdown report with your findings with as much detail as possible.",
         ],
         expected_output="Report in markdown format",
-        save_response_to_file=research_analyst_report,
     )
 
     investment_lead: Agent = Agent(
@@ -58,7 +45,6 @@ class InvestmentAnalyst(Workflow):
             "Review the report provided by the research analyst and produce a investment proposal for the client.",
             "Provide the amount you'll exist in each company and a report on why.",
         ],
-        save_response_to_file=investment_report,
     )
 
     def run(self, companies: str) -> Iterator[RunResponse]:
