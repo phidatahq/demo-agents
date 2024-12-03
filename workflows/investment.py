@@ -5,7 +5,6 @@ from shutil import rmtree
 from phi.agent import Agent, RunResponse
 from phi.workflow import Workflow
 from phi.tools.yfinance import YFinanceTools
-from phi.utils.pprint import pprint_run_response
 from phi.utils.log import logger
 
 

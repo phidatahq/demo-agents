@@ -5,12 +5,9 @@ from pydantic import BaseModel, Field
 
 from phi.agent import Agent
 from phi.workflow import Workflow, RunResponse, RunEvent
-from phi.storage.workflow.postgres import PgWorkflowStorage
 from phi.tools.duckduckgo import DuckDuckGo
-from phi.utils.pprint import pprint_run_response
 from phi.utils.log import logger
 
-from db.session import db_url
 
 
 class NewsArticle(BaseModel):
@@ -115,4 +112,3 @@ class BlogPostGenerator(Workflow):
         content: Optional[str] = self.writer.run_response.content
         if content:
             self.add_cached_blog_post(topic, content)
-
