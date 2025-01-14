@@ -34,4 +34,4 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_REPO }}/demo-agents:dev, ${{ secrets.DOCKERHUB_REPO }}/demo-agents:prd
+          tags: ${{ vars.DOCKERHUB_NAMESPACE }}/demo-agents:dev, ${{ vars.DOCKERHUB_NAMESPACE }}/demo-agents:prd
